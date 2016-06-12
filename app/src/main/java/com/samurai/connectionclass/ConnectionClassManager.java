@@ -27,7 +27,8 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class ConnectionClassManager {
 
-  static final double DEFAULT_SAMPLES_TO_QUALITY_CHANGE = 5;
+  //static final double DEFAULT_SAMPLES_TO_QUALITY_CHANGE = 5;
+  static final double DEFAULT_SAMPLES_TO_QUALITY_CHANGE = 3;
   private static final int BYTES_TO_BITS = 8;
 
   /**
@@ -166,16 +167,18 @@ public class ConnectionClassManager {
   }
 
   /**
-   * Interface for listening to when {@link com.facebook.network.connectionclass.ConnectionClassManager}
    * changes state.
    */
   public interface ConnectionClassStateChangeListener {
     /**
-     * The method that will be called when {@link com.facebook.network.connectionclass.ConnectionClassManager}
      * changes ConnectionClass.
      * @param bandwidthState The new ConnectionClass.
      */
     public void onBandwidthStateChange(ConnectionQuality bandwidthState);
+
+    //This method will have the actual bandwidth rate notified.
+    public void onBandwidthBitRateChange(double averageRate);
+
   }
 
   /**
@@ -203,6 +206,7 @@ public class ConnectionClassManager {
     int size = mListenerList.size();
     for (int i = 0; i < size; i++) {
       mListenerList.get(i).onBandwidthStateChange(mCurrentBandwidthConnectionQuality.get());
+      mListenerList.get(i).onBandwidthBitRateChange(mDownloadBandwidth.getAverage());
     }
   }
 }

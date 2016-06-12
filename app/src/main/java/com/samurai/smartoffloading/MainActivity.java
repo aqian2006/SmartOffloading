@@ -24,7 +24,7 @@ import com.samurai.common.logger.MessageOnlyLogFilter;
 
 public class MainActivity extends FragmentActivity {
 
-    public static final String TAG = "Basic Network Demo";
+    public static final String TAG = "Network Connection";
     // Whether there is a Wi-Fi connection.
     private static boolean wifiConnected = false;
     // Whether there is a mobile connection.

@@ -84,10 +84,22 @@ public class TestConnectionActivity extends Activity {
         @Override
         public void onBandwidthStateChange(ConnectionQuality bandwidthState) {
             mConnectionClass = bandwidthState;
+     //       runOnUiThread(new Runnable() {
+     //           @Override
+     //           public void run() {
+     //               mTextView.setText(mConnectionClass.toString());
+     //           }
+    //        });
+        }
+
+        @Override
+        public void onBandwidthBitRateChange(double averageRate){
+            int iBandwidthRate = (int)averageRate;
+            final String sBandwidthRate = Integer.toString(iBandwidthRate)+" Kbps";
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    mTextView.setText(mConnectionClass.toString());
+                    mTextView.setText(sBandwidthRate);
                 }
             });
         }
