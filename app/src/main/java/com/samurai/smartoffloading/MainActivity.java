@@ -16,7 +16,10 @@ import com.samurai.common.logger.LogWrapper;
 import com.samurai.common.logger.MessageOnlyLogFilter;
 
 /**
- * Created by AbbottZhang on 6/12/16.
+ * Name: MainActivity
+ * Author: Cheng ZHANG
+ * Date: 2016-06-12
+ * Description: The main activity for smart offloading
  */
 
 public class MainActivity extends FragmentActivity {
@@ -44,16 +47,11 @@ public class MainActivity extends FragmentActivity {
 
         // Initialize the logging framework.
         initializeLogging();
-
-        System.out.println("onCreate() has been finised");
-        //setHasOptionsMenu(true);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.main, menu);
-        System.out.println("onCreateOptionsMenu() has been finised");
         return true;
     }
 
@@ -61,7 +59,6 @@ public class MainActivity extends FragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.info_action:
-                mLogFragment.getLogView().setText("I love you very much!");
                 Intent intent = new Intent(this, TestConnectionActivity.class);
                 this.startActivity(intent);
                 return true;
